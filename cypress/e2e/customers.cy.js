@@ -21,7 +21,7 @@ describe('API Tests', () => {
       id = response.body.id
       api.getCustomer(id).then((resp1)=>{
         expect(resp1.body.data.customer.id).to.equal(id);
-        expect(resp1.body.data.customer.name).to.equal('test');
+        expect(resp1.body.data.customer.name).to.equal(api.user.CreateUser.name);
       })
     });
   });
@@ -30,8 +30,8 @@ describe('API Tests', () => {
     api.modifyCustomer(id).then((response)=>{
       expect(response.status).to.equal(200);
       api.getCustomer(id).should((resp1)=>{
-        expect(resp1.body.data.customer.name).to.equal('modify');
-        expect(resp1.body.data.customer.type).to.equal('Company');
+        expect(resp1.body.data.customer.name).to.equal(api.user.ModifyUser.name);
+        expect(resp1.body.data.customer.type).to.equal(api.user.ModifyUser.type);
       })
     })
   });

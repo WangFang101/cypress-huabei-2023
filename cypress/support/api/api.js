@@ -1,4 +1,14 @@
 export class Api {
+    constructor() {
+        cy.fixture('userInfo.json')
+            .then((data) => {
+                this.user = data
+                console.log(this.user.CreateUser.type)
+            })
+
+    }
+
+
     getAllCustomers(){
         return cy.request({
             method: 'GET',
@@ -8,8 +18,8 @@ export class Api {
 
     addNewCustomer() {
         const body = {
-            name: 'test',
-            type: 'Individual'
+            name: this.user.CreateUser.name,
+            type: this.user.CreateUser.type
         }
         return cy.request({
             method: 'POST',
@@ -43,8 +53,8 @@ export class Api {
 
     modifyCustomer(id) {
         const body = {
-            name: 'modify',
-            type: 'Company'
+            name: this.user.ModifyUser.name,
+            type: this.user.ModifyUser.type
         }
         return cy.request({
             method: 'PUT',

@@ -1,0 +1,10 @@
+{
+  "CreateUser": {
+    "name": "test1",
+    "type": "Individual"
+  },
+  "ModifyUser": {
+    "name": "modify1",
+    "type": "Company"
+  }
+}
