@@ -1,32 +1,35 @@
+
+
+const env = Cypress.env('environment')
 export class Api {
     constructor() {
         cy.fixture('userInfo.json')
+            .its(env)
             .then((data) => {
                 this.user = data
-                console.log(this.user.CreateUser.type)
             })
 
     }
 
-
     getAllCustomers(){
         return cy.request({
             method: 'GET',
-            url: 'http://3x5m5o-3000.csb.app/customers',
+            url: '/customers',
         })
     }
 
-    addNewCustomer() {
+    addNewCustomer( key = 'auth_key') {
         const body = {
             name: this.user.CreateUser.name,
             type: this.user.CreateUser.type
         }
         return cy.request({
             method: 'POST',
-            url: 'http://3x5m5o-3000.csb.app/customer',
+            failOnStatusCode: false,
+            url: '/customer',
             headers: {
                 'Content-Type': 'application/json',
-                'auth_key': 'you are the best'
+                'auth_key': `${key}`
             },
             body,
         })
@@ -36,32 +39,36 @@ export class Api {
         return cy.request({
             method: 'GET',
             failOnStatusCode: false,
-            url: `http://3x5m5o-3000.csb.app/customer?id=${id}`,
+            url: `/customer?id=${id}`,
         })
     }
 
-    deleteCustomer(id) {
+    deleteCustomer(id, key='auth_key') {
         return cy.request({
             method: 'DELETE',
-            url: `http://3x5m5o-3000.csb.app/customer/${id}`,
+            failOnStatusCode: false,
+            url: `/customer/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'auth_key': 'you are the best'
+                'auth_key': `${key}`
             },
         })
     }
 
-    modifyCustomer(id) {
+
+
+    modifyCustomer(id,  key= 'key') {
         const body = {
             name: this.user.ModifyUser.name,
             type: this.user.ModifyUser.type
         }
         return cy.request({
             method: 'PUT',
-            url: `http://3x5m5o-3000.csb.app/customer/${id}`,
+            failOnStatusCode: false,
+            url: `/customer/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'auth_key': 'you are the best'
+                'auth_key': `${key}`
             },
             body,
         })

@@ -1,10 +1,22 @@
 {
-  "CreateUser": {
-    "name": "test1",
-    "type": "Individual"
+  "QA": {
+    "CreateUser": {
+      "name": "createForQA",
+      "type": "Individual"
+    },
+    "ModifyUser": {
+      "name": "modifyForQA",
+      "type": "Company"
+    }
   },
-  "ModifyUser": {
-    "name": "modify1",
-    "type": "Company"
+  "UAT": {
+    "CreateUser": {
+      "name": "createForUAT",
+      "type": "Individual"
+    },
+    "ModifyUser": {
+      "name": "modifyForUAT",
+      "type": "Company"
+    }
   }
 }
