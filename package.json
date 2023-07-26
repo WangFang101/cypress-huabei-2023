@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "open:qa": "cypress open --config-file cypress.qa.config.js",
+    "open:uat": "cypress open --config-file cypress.uat.config.js",
+    "run:qa": "cypress run --config-file cypress.qa.config.js",
+    "run:uat": "cypress run --config-file cypress.uat.config.js",
+    "report:qa": " cypress run --config-file cypress.qa.config.js --reporter mochawesome",
+    "report:uat": " cypress run --config-file cypress.uat.config.js --reporter mochawesome"
   },
   "repository": {
     "type": "git",
@@ -17,6 +22,11 @@
   },
   "homepage": "https://github.com/WangFang101/cypress-huabei-2023#readme",
   "devDependencies": {
-    "cypress": "^12.17.1"
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "mocha-allure-reporter": "^1.4.0",
+    "allure-commandline": "^2.23.1",
+    "cypress": "^12.17.2",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3"
   }
 }
