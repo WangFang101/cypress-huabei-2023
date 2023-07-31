@@ -15,6 +15,12 @@ describe('API Tests', () => {
     });
   });
 
+  it('can not add new customer without token', () => {
+    api.addNewCustomer('').then((response) => {
+      expect(response.status).to.equal(401);
+    });
+  });
+
   it('add new customer', () => {
     api.addNewCustomer().then((response) => {
       expect(response.status).to.equal(201);
@@ -36,12 +42,24 @@ describe('API Tests', () => {
     })
   });
 
+  it('can not modify customer without token', () => {
+    api.modifyCustomer(id,'').then((response)=>{
+      expect(response.status).to.equal(401);
+    })
+  });
+
   it('delete new customer', () => {
     api.deleteCustomer(id).then((response)=>{
       expect(response.status).to.equal(200);
       api.getCustomer().should((resp1)=>{
         expect(resp1.status).to.equal(404)
       })
+    })
+  });
+
+  it('can not delete new customer without token', () => {
+    api.deleteCustomer(id,'').then((response)=>{
+      expect(response.status).to.equal(401);
     })
   });
 
